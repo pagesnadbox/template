@@ -16,11 +16,11 @@ Vue.use(Vuex)
 
 let store
 
-export const Store = ({ modules = {}, plugins = {} } = {}) => {
+export const Store = ({ modules = {}, plugins = [] } = {}) => {
   if (!store) {
     store = new Vuex.Store({
       modules: modulesFn(modules),
-      plugins: [plugins.undoRedoPlugin],
+      plugins,
     })
   }
 

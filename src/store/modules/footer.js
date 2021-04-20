@@ -1,4 +1,6 @@
-import { set, setProp } from '@/utils/vuex'
+import { getDefaultModule } from '@/utils/vuex'
+
+const defaultModule = getDefaultModule()
 
 const stateFn = (options) => ({
     data: options.footer,
@@ -10,12 +12,10 @@ export default (options) => {
         namespaced: true,
         state,
         mutations: {
-            SET_PROP: setProp,
+            ...defaultModule.mutations,
         },
         actions: {
-            setProp ({ commit }, payload) {
-                commit('SET_PROP', payload)
-            },
+            ...defaultModule.actions,
         },
         getters: {
         },

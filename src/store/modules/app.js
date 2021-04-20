@@ -1,5 +1,8 @@
+import { getDefaultModule } from '@/utils/vuex'
 import { set, setProp } from '@/utils/vuex'
 import Vue from 'vue'
+
+const defaultModule = getDefaultModule()
 
 const stateFn = (options) => ({
     data: options.app,
@@ -11,21 +14,13 @@ export default (options) => {
         namespaced: true,
         state,
         mutations: {
-            SET_PROP: setProp,
-            SET_ITEMS: (state, payload) => {
-                Vue.set(state.data.list, 'items', payload)
-            },
+            ...defaultModule.mutations,
         },
         actions: {
-            setProp ({ commit }, payload) {
-                commit('SET_PROP', payload)
-            },
-            setItems ({ commit }, payload) {
-                commit('SET_ITEMS', payload)
-            },
+            ...defaultModule.actions,
         },
         getters: {
-            items: (state) => state.data.list.items,
+            ...defaultModule.getters,
             itemsFormatted: (state, getters) => getters.items.filter((s) => !s.hidden),
             itemsFormattedKeyOnly: (state, getters) => getters.itemsFormatted.map((s) => s.key),
         },

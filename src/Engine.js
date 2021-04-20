@@ -18,7 +18,11 @@ class API extends EventEmitter {
         return events;
     }
 
-    async init({ config = {}, plugins = {}, preventMount = false } = {}) {
+    get store() {
+        return store
+    }
+
+    async init({ config = {}, plugins = [], preventMount = false } = {}) {
         store = Store({ modules: config, plugins })
 
         Vue.prototype.$action = (action, value) => EventBus.$emit(events.SETTINGS_ACTION, { key: action, value });
@@ -46,9 +50,16 @@ class API extends EventEmitter {
             "social",
             "footer"
         ].forEach((key) => {
-            store.dispatch(`${key}/setData`, config[key]);
+            store.dispatch(`${key}/setData`, config[key].data || config[key]);
         })
     }
+
+    replaceConfig(state) {
+        store.replaceState({
+          ...state,
+          settings: store.state.settings
+        })
+      }
 
     action(payload) {
         store.dispatch(payload.key, payload.value);
@@ -58,6 +69,15 @@ class API extends EventEmitter {
         Object.keys(API.events).forEach(key => {
             EventBus.$on(API.events[key], (data) => this.emit(API.events[key], data));
         });
+    }
+
+    setThemeProp(payload) {
+        this.app.$vuetify.theme[payload.key] = payload.value;
+    }
+
+    setThemeColor(payload) {
+        const target = this.app.$vuetify.theme.isDark ? "dark" : "light";
+        this.app.$vuetify.theme.themes[target][payload.key] = payload.value;
     }
 
 }
