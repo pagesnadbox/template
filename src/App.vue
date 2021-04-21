@@ -3,19 +3,47 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState } from "vuex";
 
-  import Index from "@/layouts/home/Index.vue";
+import Index from "@/layouts/home/Index.vue";
+import { EventBus, events } from './utils/eventBus';
 
-  export default {
-    components: {
-      Index
+export default {
+  components: {
+    Index,
+  },
+
+  name: "App",
+
+  computed: {
+    ...mapState("app", ["data"]),
+  },
+
+  watch: {
+    "data.dark": {
+      immediate: true,
+      handler: "onDarkChange",
     },
-    name: 'App',
-    created () {
-      window.addEventListener('wheel', (e) => e.stopPropagation())
+    "data.primary": {
+      immediate: true,
+      handler: "onPrimaryColor",
     },
-  }
+  },
+
+  methods: {
+    onDarkChange(value) {
+      this.$vuetify.theme.dark = value;
+    },
+    onPrimaryColor(value) {
+      EventBus.$emit(events.THEME_COLOR_CHANGE, { key: "primary_pagesandbox", value });
+      this.$vuetify.theme.currentTheme.primary_pagesandbox = value;
+    },
+  },
+
+  created() {
+    window.addEventListener("wheel", (e) => e.stopPropagation());
+  },
+};
 </script>
 
 <style>

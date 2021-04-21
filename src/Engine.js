@@ -56,10 +56,10 @@ class API extends EventEmitter {
 
     replaceConfig(state) {
         store.replaceState({
-          ...state,
-          settings: store.state.settings
+            ...state,
+            settings: store.state.settings
         })
-      }
+    }
 
     action(payload) {
         store.dispatch(payload.key, payload.value);
@@ -71,14 +71,15 @@ class API extends EventEmitter {
         });
     }
 
-    setThemeProp(payload) {
-        this.app.$vuetify.theme[payload.key] = payload.value;
-    }
+    // setThemeProp(payload) {
+    //     this.app.$vuetify.theme[payload.key] = payload.value;
+    // }
 
-    setThemeColor(payload) {
-        const target = this.app.$vuetify.theme.isDark ? "dark" : "light";
-        this.app.$vuetify.theme.themes[target][payload.key] = payload.value;
-    }
+    // setThemeColor(payload) {
+    //     const target = this.app.$vuetify.theme.isDark ? "dark" : "light";
+
+    //     Vue.set(this.app.$vuetify.theme.themes[target], payload.key, payload.value)
+    // }
 
 }
 

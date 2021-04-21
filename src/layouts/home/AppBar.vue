@@ -25,6 +25,8 @@
           background-color="transparent"
           :value="0"
         >
+          <v-tabs-slider color="primary_pagesandbox"></v-tabs-slider>
+
           <v-tab
             v-for="({ id, title }, i) in items"
             :key="i"
@@ -46,6 +48,7 @@
     <v-navigation-drawer v-model="drawer" app temporary>
       <v-list dense nav>
         <v-list-item
+          color="primary_pagesandbox"
           v-for="(item, index) in items"
           :key="`${item.id}-${index}`"
           link
@@ -67,14 +70,14 @@ export default {
   name: "HomeAppBar",
 
   data: () => ({
-    drawer: null
+    drawer: null,
   }),
 
   computed: {
     ...mapState("app", ["data"]),
     ...mapGetters("app", ["itemsFormatted"]),
     itemsFormattedExluded() {
-      return this.itemsFormatted.filter(i => ["hero"].indexOf(i.key) === -1);
+      return this.itemsFormatted.filter((i) => ["hero"].indexOf(i.key) === -1);
     },
     items() {
       return [...this.defaultItems, ...this.itemsFormattedExluded];
@@ -83,8 +86,8 @@ export default {
       return [
         {
           title: "Home",
-          id: "home"
-        }
+          id: "home",
+        },
       ];
     },
     color() {
@@ -93,15 +96,15 @@ export default {
       }
 
       return this.$vuetify.theme.isDark ? "#000" : "#fff";
-    }
+    },
   },
 
   methods: {
     onItemClick(id) {
       this.$vuetify.goTo(`#${id}`);
       this.drawer = false;
-    }
-  }
+    },
+  },
 };
 </script>
 

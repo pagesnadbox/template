@@ -30,59 +30,60 @@ export default {
   props: {
     href: {
       type: String,
-      default: ""
+      default: "",
     },
 
     iconSrc: {
       type: String,
-      default: ""
+      default: "",
     },
 
     color: {
       type: String,
-      default: "#42A5F6"
+      default: "primary_pagesandbox",
     },
 
     depressed: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     textOnly: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     openInNewTab: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     minWidth: {
       type: [Number, String],
-      default: 64
+      default: 64,
     },
 
     block: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     blockOnMobile: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     size: {
       type: String,
-      default: ""
+      default: "",
     },
 
     tile: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
+
   computed: {
     sizeObject() {
       return {
@@ -90,13 +91,13 @@ export default {
         small: this.size === "small",
         normal: this.size === "normal",
         large: this.size === "large",
-        "x-large": this.size === "x-large"
+        "x-large": this.size === "x-large",
       };
     },
 
     targetFormatted() {
       return this.openInNewTab ? "_blank" : "_self";
-    }
-  }
+    },
+  },
 };
 </script>

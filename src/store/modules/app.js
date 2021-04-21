@@ -1,6 +1,4 @@
 import { getDefaultModule } from '@/utils/vuex'
-import { set, setProp } from '@/utils/vuex'
-import Vue from 'vue'
 
 const defaultModule = getDefaultModule()
 

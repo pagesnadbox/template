@@ -33,55 +33,55 @@
 </template>
 
 <script>
-  import mixin from './mixin'
+import mixin from "./mixin";
 
-  export default {
-    name: 'BaseAvatar',
+export default {
+  name: "BaseAvatar",
 
-    inject: ['theme'],
+  inject: ["theme"],
 
-    mixins: [mixin],
+  mixins: [mixin],
 
-    props: {
-      color: String,
-      dark: Boolean,
-      icon: String,
-      outlined: Boolean,
-      size: {
-        type: [Number, String],
-        default: 56,
-      },
+  props: {
+    color: String,
+    dark: Boolean,
+    icon: String,
+    outlined: Boolean,
+    size: {
+      type: [Number, String],
+      default: 56,
     },
+  },
 
-    data: () => ({
-      multiply: 6,
-    }),
+  data: () => ({
+    multiply: 6,
+  }),
 
-    computed: {
-      classes () {
-        return [this.outlined && 'base-avatar--outlined']
-      },
-      isDark () {
-        return this.theme.isDark || this.dark
-      },
-      outlineSize () {
-        return Number(this.size) + this.size / this.multiply
-      },
-      styles () {
-        const margin = this.size / (this.multiply * 2)
-
-        return {
-          // Aligns the outline content with the content
-          margin: `-${margin}px 0 0 -${margin}px`,
-        }
-      },
-      ids () {
-        return {
-          icon: `${this.$attrs.id}-icon`,
-        }
-      },
+  computed: {
+    classes() {
+      return [this.outlined && "base-avatar--outlined"];
     },
-  }
+    isDark() {
+      return this.theme.isDark || this.dark;
+    },
+    outlineSize() {
+      return Number(this.size) + this.size / this.multiply;
+    },
+    styles() {
+      const margin = this.size / (this.multiply * 2);
+
+      return {
+        // Aligns the outline content with the content
+        margin: `-${margin}px 0 0 -${margin}px`,
+      };
+    },
+    ids() {
+      return {
+        icon: `${this.$attrs.id}-icon`,
+      };
+    },
+  },
+};
 </script>
 
 <style lang="sass">

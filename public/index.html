@@ -501,7 +501,12 @@
     }
 
     setTimeout(() => {
-      new window.API.Engine().init({ config });
+      // new window.API.Engine().init({ config });
+
+      var script = document.createElement('script');
+      script.src = 'http://localhost:8081/js/app.js';
+      document.body.appendChild(script)
+
     }, 100)
   </script>
   <!-- built files will be auto injected -->

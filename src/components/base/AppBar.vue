@@ -10,11 +10,11 @@
 </template>
 
 <script>
-  import mixin from './mixin'
+import mixin from "./mixin";
 
-  export default {
-    name: 'BaseAppBar',
+export default {
+  name: "BaseAppBar",
 
-    mixins: [mixin],
-  }
+  mixins: [mixin],
+};
 </script>

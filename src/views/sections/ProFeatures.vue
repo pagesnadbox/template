@@ -86,7 +86,7 @@
           <div class="text-center">
             <base-btn
               :tile="false"
-              color="primary"
+              color="primary_pagesandbox"
               href="https://store.vuetifyjs.com/products/zero-theme-pro/?ref=vtyd-pro-page-features"
               rounded
             >
