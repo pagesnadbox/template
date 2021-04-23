@@ -19,7 +19,7 @@
   </base-section>
 </template>
 
-<script>
+<script>  
 import { mapState } from "vuex";
 export default {
   name: "SectionThemeFeatures",

@@ -29,6 +29,10 @@ export default {
         }
     },
 
+    watch: {
+        id: "scrollIntoView"
+    },
+
     computed: {
         ...mapState('settings', ['id', 'allowEdit', 'open', 'showHighlighter']),
 
@@ -119,6 +123,12 @@ export default {
 
         },
 
+        scrollIntoView(value) {
+            if (this.$attrs.id === value) {
+                this.$el.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" })
+            }
+        },
+
         onClick(...args) {
             if (this.$listeners.click) {
                 this.$listeners.click(...args)
@@ -129,9 +139,8 @@ export default {
                 const name = this.$options.name
                 const id = this.$attrs.id
 
-                if (this.isMobile) {
-                    event.target.scrollIntoView({ behavior: "smooth" })
 
+                if (this.isMobile) {
                     EventBus.$emit(events.CLEAR_COMPONENT_HIGHLIGHT)
                     this.highligh();
                     EventBus.$once(events.CLEAR_COMPONENT_HIGHLIGHT, this.clearHighlightBind)
