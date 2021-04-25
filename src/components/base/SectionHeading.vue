@@ -42,7 +42,7 @@
     <base-body
       v-if="$slots.default || text"
       :id="ids.body"
-      :dark="dark || textDark"
+      :dark="dark"
       :editable="editableProps"
       :align="align"
       max-width="700"
@@ -93,7 +93,6 @@
       },
       color: {
         type: String,
-        default: '#42A5F6',
       },
       icon: String,
       outlined: Boolean,

@@ -1,5 +1,5 @@
 <template>
-  <v-img v-bind="attrs" :height="effectiveHeight" :src="source" v-on="listeners">
+  <v-img v-bind="attrs" :height="effectiveHeight" :src="effectiveSource" v-on="listeners">
     <slot />
   </v-img>
 </template>

@@ -5,7 +5,7 @@
       elevation="1"
       elevate-on-scroll
       v-bind="data.bar"
-      :color="color"
+      :color="data.bar.color"
     >
       <base-vuetify-img
         id="app-bar-logo"
@@ -89,13 +89,6 @@ export default {
           id: "home",
         },
       ];
-    },
-    color() {
-      if (this.data.bar.color) {
-        return this.data.bar.color;
-      }
-
-      return this.$vuetify.theme.isDark ? "#000" : "#fff";
     },
   },
 

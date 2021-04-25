@@ -2,7 +2,6 @@
   <base-section id="themeFeatures" v-bind="data">
     <base-section-heading
       id="themeFeatures-heading"
-      :text-dark="data.dark"
       v-bind="heading"
     />
 
@@ -28,9 +27,12 @@ export default {
     ...mapState("themeFeatures", ["data"]),
 
     heading() {
+      const dark = this.data.heading.dark ?? this.data.dark
       return {
         ...this.data.heading,
-        color: this.data.heading.color || this.data.color
+        color: this.data.heading.color || this.data.color,
+        dark,
+        textDark: dark
       };
     },
 

@@ -22,10 +22,11 @@ class API extends EventEmitter {
         return store
     }
 
-    async init({ config = {}, plugins = [], preventMount = false } = {}) {
+    async init({ imageService, config = {}, plugins = [], preventMount = false } = {}) {
         store = Store({ modules: config, plugins })
 
         Vue.prototype.$action = (action, value) => EventBus.$emit(events.SETTINGS_ACTION, { key: action, value });
+        Vue.prototype.$imageService = imageService;
 
         this.app = new Vue({
             vuetify,

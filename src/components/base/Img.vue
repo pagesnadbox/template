@@ -1,5 +1,5 @@
 <template>
-  <img v-bind="attrs" :height="effectiveHeight" :src="source" v-on="listeners" />
+  <img v-bind="attrs" :height="effectiveHeight" :src="effectiveSource" v-on="listeners" />
 </template>
 
 <script>
