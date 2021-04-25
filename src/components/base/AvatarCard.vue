@@ -7,6 +7,7 @@
       :color="color"
       :dark="dark"
       :icon="icon"
+      :iconDark="iconDark"
       :outlined="outlined"
       :size="size"
       class="mb-5 align-self-start"
@@ -60,6 +61,7 @@ export default {
     },
     color: String,
     dark: Boolean,
+    iconDark: Boolean,
     textDark: Boolean,
     horizontal: Boolean,
     icon: String,

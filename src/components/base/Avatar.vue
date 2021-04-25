@@ -24,7 +24,7 @@
         v-if="icon"
         :id="ids.icon"
         :editable="editable"
-        :dark="dark"
+        :dark="iconDark"
         :size="size / 2"
         :icon="icon"
       />
@@ -45,6 +45,7 @@ export default {
   props: {
     color: String,
     dark: Boolean,
+    iconDark: Boolean,
     icon: String,
     outlined: Boolean,
     size: {

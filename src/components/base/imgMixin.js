@@ -43,13 +43,11 @@ export default {
     },
 
     source() {
-      const isDark = this.dark || this.$vuetify.theme.isDark;
-
-      const srcProp = isDark ? "srcDark" : "src";
+      const srcProp = "src";
 
       return (
         this.images[srcProp]?.url ||
-        this.images[this.src]?.ur ||
+        this.images[this.src]?.url ||
         this[srcProp] || this.src
       );
     }

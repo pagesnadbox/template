@@ -1,29 +1,34 @@
 <template>
-  <v-icon
-    :size="size"
-    v-bind="attrs"
-    v-on="listeners"
-  >
+  <v-icon :size="size" v-bind="attrs" v-on="listeners" :color="color">
     {{ icon || $slots.default }}
   </v-icon>
 </template>
 
 <script>
-  import mixin from './mixin'
+import mixin from "./mixin";
 
-  export default {
-    name: 'BaseIcon',
+export default {
+  name: "BaseIcon",
 
-    mixins: [mixin],
+  mixins: [mixin],
 
-    props: {
-      size: {
-        type: [Number, String],
-        default: 56,
-      },
-      icon: {
-        type: String,
-      },
+  props: {
+    size: {
+      type: [Number, String],
+      default: 56,
     },
-  }
+    icon: {
+      type: String,
+    },
+    dark: {
+      type: Boolean,
+    },
+  },
+
+  computed: {
+    color() {
+      return this.$attrs.color ?? (this.dark ? "#fff" : "#000");
+    },
+  },
+};
 </script>
