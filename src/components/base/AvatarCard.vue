@@ -15,7 +15,7 @@
 
     <div :class="horizontal && title && 'ml-6'">
 
-      <base-img :editable="editableProps" v-if="image.src || image.srcDark" class="mb-10" v-bind="image"></base-img>
+      <base-img :editable="editableProps" v-if="!hiddenImage && (image.src || image.srcDark)" class="mb-10" v-bind="image"></base-img>
 
       <base-title
         :id="ids.title"
@@ -64,6 +64,7 @@ export default {
     iconDark: Boolean,
     textDark: Boolean,
     horizontal: Boolean,
+    hiddenImage: Boolean,
     icon: String,
     image: {
       type: Object,
