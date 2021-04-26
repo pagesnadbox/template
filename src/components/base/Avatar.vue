@@ -45,7 +45,7 @@ export default {
   props: {
     color: String,
     dark: Boolean,
-    iconDark: Boolean,
+    iconDark: null,
     icon: String,
     outlined: Boolean,
     size: {

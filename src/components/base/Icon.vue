@@ -17,17 +17,20 @@ export default {
       type: [Number, String],
       default: 56,
     },
+
     icon: {
       type: String,
     },
-    dark: {
-      type: Boolean,
-    },
+
+    dark: null,
   },
 
   computed: {
     color() {
-      return this.$attrs.color ?? (this.dark ? "#fff" : "#000");
+      const dark =
+        this.dark === null || this.dark === undefined ? this.isDark : this.dark;
+
+      return this.$attrs.color ?? (dark ? "#fff" : "#000");
     },
   },
 };

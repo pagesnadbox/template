@@ -36,12 +36,6 @@ export default {
       };
     },
 
-    listFiltered() {
-      return {
-        ...this.data.list,
-        items: this.list.items.filter()
-      };
-    }
   },
 
   methods: {

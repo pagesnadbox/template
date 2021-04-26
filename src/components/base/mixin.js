@@ -62,6 +62,10 @@ export default {
             return (this.selected || (this.allowEdit && this.mouseover))
         },
 
+        isDark() {
+            return this.$vuetify.theme.isDark
+        },
+
         isDesktop() {
             return this.$vuetify.breakpoint.mdAndUp
         },
@@ -145,8 +149,6 @@ export default {
                     this.highligh();
                     EventBus.$once(events.CLEAR_COMPONENT_HIGHLIGHT, this.clearHighlightBind)
                 }
-
-                // this.setItems(this.items || [])
 
                 event.preventDefault()
                 event.stopPropagation()

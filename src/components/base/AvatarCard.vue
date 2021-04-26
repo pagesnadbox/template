@@ -61,7 +61,7 @@ export default {
     },
     color: String,
     dark: Boolean,
-    iconDark: Boolean,
+    iconDark: null,
     textDark: Boolean,
     horizontal: Boolean,
     hiddenImage: Boolean,
