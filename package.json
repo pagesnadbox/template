@@ -1,6 +1,6 @@
 {
   "name": "pagesandbox-template",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -16,6 +16,11 @@
     "vuetify": "^2.3.17",
     "vuex": "^3.4.0"
   },
+  "files": [
+    "dist/*",
+    "src/*",
+    "*.json"
+  ],
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@vue/cli-plugin-babel": "^4.3.1",
