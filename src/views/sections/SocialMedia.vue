@@ -13,6 +13,7 @@
           <base-icon
             :id="`social-list-items-${i}`"
             v-bind="item"
+            :dark="data.dark"
             class="ma-4"
           />
         </template>
