@@ -1,10 +1,12 @@
 import Vue from 'vue'
+import EventEmitter from 'eventemitter3';
+
 import App from './App.vue'
 import { Store } from './store'
 import vuetify from './plugins/vuetify';
 
 import { EventBus, events } from "./utils/eventBus";
-import EventEmitter from 'eventemitter3';
+import ImagesService from "./services/ImagesService"
 
 import './plugins'
 
@@ -26,7 +28,7 @@ class API extends EventEmitter {
         store = Store({ modules: config, plugins })
 
         Vue.prototype.$action = (action, value) => EventBus.$emit(events.SETTINGS_ACTION, { key: action, value });
-        Vue.prototype.$imageService = imageService;
+        Vue.prototype.$imageService = imageService || ImagesService.getInstance();;
 
         this.app = new Vue({
             vuetify,

@@ -13,9 +13,7 @@ module.exports = {
   transpileDependencies: [
     'vuetify',
   ],
-  publicPath: process.env.NODE_ENV === 'staging'
-    ? '/pagesandbox/'
-    : '/',
+  publicPath: './',
   chainWebpack: (config) => {
     // Disable prefetch and preload of async modules for 'app' page
     // config.plugins.store.delete('prefetch-app');

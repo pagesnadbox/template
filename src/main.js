@@ -1,3 +1,4 @@
+import "./publicPath";
 import Engine from "./Engine";
 
 // new Engine();
