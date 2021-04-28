@@ -1,7 +1,6 @@
 window.com = window.com || {}
 window.com.config = {
     "app": {
-        "publicPath": "/pagesandbox-v2/",
         "componentName": "BaseApp",
         "id": "app",
         "bar": {

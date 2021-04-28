@@ -1,1 +1,1 @@
-__webpack_public_path__ = window.com.config.app.publicPath
+__webpack_public_path__ = window.com?.config?.app?.publicPath || './'
