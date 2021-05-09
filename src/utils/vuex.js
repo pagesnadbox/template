@@ -14,52 +14,55 @@ export const toggle = property => state => (state[property] = !state[property])
 
 export const setProp = (state, payload) => {
     let data = state.data;
-    let paths = payload.id.split("-");
-    
-    paths = paths.slice(1);
+    let paths = payload.id.split("-").slice(1);
+
     paths.forEach(path => {
-      data = data[path];
+        data = data.slots[path];
     });
 
     Vue.set(data, payload.key, payload.value)
+
+    state.counter++
 }
 
-export const getDefaultModule = (defaultItem) => {
+export const addSlot = (state, payload) => {
+    let data = state.data;
+    let paths = payload.id.split("-").slice(1);
+
+    paths.forEach(path => {
+        data = data.slots[path];
+    });
+
+    if (!data.slots) {
+        Vue.set(data, "slots", {})
+    }
+
+    data = data.slots;
+
+    Vue.set(data, payload.key, payload.value)
+
+    state.counter++
+}
+
+export const getDefaultModule = () => {
     return {
         mutations: {
             SET_DATA: set("data"),
             SET_PROP: setProp,
-            SET_ITEMS: (state, payload) => {
-                Vue.set(state.data.list, 'items', payload)
-            },
-            ADD_ITEM: (state, payload) => {
-                state.data.list.items.push(payload)
-            },
-            REMOVE_ITEM: (state, payload) => {
-                state.data.list.items.splice(payload, 1)
-            },
+            ADD_SLOT: addSlot,
         },
         actions: {
-            setData ({ commit }, payload) {
+            setData({ commit }, payload) {
                 commit('SET_DATA', payload)
             },
-            setProp ({ commit }, payload) {
+            setProp({ commit }, payload) {
                 commit('SET_PROP', payload)
             },
-            setItems ({ commit }, payload) {
-                commit('SET_ITEMS', payload)
-            },
-            addItem ({ commit, state }) {
-                const item = defaultItem()
-
-                commit('ADD_ITEM', item)
-            },
-            removeItem ({ commit }, payload) {
-                commit('REMOVE_ITEM', payload)
+            addSlot({ commit }, payload) {
+                commit('ADD_SLOT', payload)
             },
         },
         getters: {
-            items: (state) => state.data.list.items,
         },
     }
 }

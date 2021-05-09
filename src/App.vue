@@ -1,22 +1,17 @@
 <template>
-  <Index />
+  <base-wrapper :key="counter" :component="data" />
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapState } from "vuex";
 
-import Index from "@/layouts/home/Index.vue";
-import { EventBus, events } from './utils/eventBus';
+import { EventBus, events } from "./utils/eventBus";
 
 export default {
-  components: {
-    Index,
-  },
-
   name: "App",
 
   computed: {
-    ...mapState("app", ["data"]),
+    ...mapState("config", ["data", "counter"]),
   },
 
   watch: {
@@ -35,7 +30,10 @@ export default {
       this.$vuetify.theme.dark = value;
     },
     onPrimaryColor(value) {
-      EventBus.$emit(events.THEME_COLOR_CHANGE, { key: "primary_pagesandbox", value });
+      EventBus.$emit(events.THEME_COLOR_CHANGE, {
+        key: "primary_pagesandbox",
+        value,
+      });
       this.$vuetify.theme.currentTheme.primary_pagesandbox = value;
     },
   },

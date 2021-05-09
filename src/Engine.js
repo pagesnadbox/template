@@ -43,18 +43,8 @@ class API extends EventEmitter {
         this._attachEvents();
     }
 
-    setConfig(config) {
-        [
-            "app",
-            "hero",
-            "themeFeatures",
-            "features",
-            "affiliates",
-            "social",
-            "footer"
-        ].forEach((key) => {
-            store.dispatch(`${key}/setData`, config[key].data || config[key]);
-        })
+    setConfig(config = {}) {
+        store.dispatch(`config/setData`, config.app);
     }
 
     replaceConfig(state) {
@@ -73,17 +63,6 @@ class API extends EventEmitter {
             EventBus.$on(API.events[key], (data) => this.emit(API.events[key], data));
         });
     }
-
-    // setThemeProp(payload) {
-    //     this.app.$vuetify.theme[payload.key] = payload.value;
-    // }
-
-    // setThemeColor(payload) {
-    //     const target = this.app.$vuetify.theme.isDark ? "dark" : "light";
-
-    //     Vue.set(this.app.$vuetify.theme.themes[target], payload.key, payload.value)
-    // }
-
 }
 
 export default API;

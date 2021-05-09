@@ -1,4 +1,4 @@
-import { mapActions, mapState } from 'vuex'
+import { mapState } from 'vuex'
 import { EventBus, events } from "../../utils/eventBus"
 
 export default {
