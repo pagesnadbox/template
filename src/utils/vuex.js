@@ -44,12 +44,29 @@ export const addSlot = (state, payload) => {
     state.counter++
 }
 
+export const removeSlot = (state, payload) => {
+    let data = state.data;
+    let paths = payload.id.split("-").slice(1);
+    
+    const lastNodeKey = paths.pop(); // remove the last id and use the parent of the target node
+
+    paths.forEach(path => {
+        data = data.slots[path];
+    });
+
+    data = data.slots;
+
+    delete data[lastNodeKey]
+    state.counter++
+}
+
 export const getDefaultModule = () => {
     return {
         mutations: {
             SET_DATA: set("data"),
             SET_PROP: setProp,
             ADD_SLOT: addSlot,
+            REMOVE_SLOT: removeSlot,
         },
         actions: {
             setData({ commit }, payload) {
@@ -60,6 +77,9 @@ export const getDefaultModule = () => {
             },
             addSlot({ commit }, payload) {
                 commit('ADD_SLOT', payload)
+            },
+            removeSlot({ commit }, payload) {
+                commit('REMOVE_SLOT', payload)
             },
         },
         getters: {

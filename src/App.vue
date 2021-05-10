@@ -24,7 +24,12 @@ export default {
       handler: "onPrimaryColor",
     },
   },
-
+  props: {
+    fillHeight: {
+      type: Boolean,
+      default: false,
+    },
+  },
   methods: {
     onDarkChange(value) {
       this.$vuetify.theme.dark = value;
