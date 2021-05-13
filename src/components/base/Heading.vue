@@ -52,15 +52,15 @@
       },
       size: {
         type: String,
-        default: 'text-h3',
+        default: '',
       },
       space: {
         type: [Number, String],
-        default: 4,
+        default: 0,
       },
       mobileSize: {
         type: String,
-        default: 'text-h4',
+        default: '',
       },
       mobileBreakpoint: {
         type: [Number, String],
@@ -73,7 +73,7 @@
       title: String,
       weight: {
         type: String,
-        default: 'black',
+        default: '',
       },
     },
 

@@ -12,11 +12,11 @@
     props: {
       size: {
         type: String,
-        default: 'text-h6',
+        default: '',
       },
       mobileSize: {
         type: String,
-        default: 'text-subtitle-1',
+        default: '',
       },
       tag: {
         type: String,
@@ -24,7 +24,7 @@
       },
       weight: {
         type: String,
-        default: 'bold',
+        default: '',
       },
     },
   }
