@@ -53,9 +53,31 @@ export default {
 
         mixinClasses() {
             return [
+                ...this.marginClasses,
+                ...this.paddingClasses,
                 ...(this.classes || []),
                 ...(this.hasHighlight ? ['hightlight'] : []),
             ]
+        },
+
+        marginClasses() {
+            const { ma, ml, mr, mt, mb } = this.$attrs;
+
+            return Object.entries({ ma, ml, mr, mt, mb }).map(([key, value]) => {
+                if (value) {
+                    return `${key}-${value}`;
+                }
+            }).filter(Boolean)
+        },
+
+        paddingClasses() {
+            const { pa, pl, pr, pt, pb } = this.$attrs;
+
+            return Object.entries({ pa, pl, pr, pt, pb }).map(([key, value]) => {
+                if (value) {
+                    return `${key}-${value}`;
+                }
+            }).filter(Boolean)
         },
 
         hasHighlight() {

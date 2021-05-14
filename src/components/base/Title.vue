@@ -1,31 +1,34 @@
 <script>
-  import Heading from './Heading'
-  import Header from '@/mixins/heading'
+import Heading from "./Heading";
+import Header from "@/mixins/heading";
 
-  export default {
-    name: 'BaseTitle',
+export default {
+  name: "BaseTitle",
 
-    extends: Heading,
+  extends: Heading,
 
-    mixins: [Header],
+  mixins: [Header],
 
-    props: {
-      size: {
-        type: String,
-        default: '',
-      },
-      mobileSize: {
-        type: String,
-        default: '',
-      },
-      tag: {
-        type: String,
-        default: 'h3',
-      },
-      weight: {
-        type: String,
-        default: '',
-      },
+  props: {
+    size: {
+      type: String,
+      default: "",
     },
-  }
+    color: {
+      type: String,
+    },
+    mobileSize: {
+      type: String,
+      default: "",
+    },
+    tag: {
+      type: String,
+      default: "h3",
+    },
+    weight: {
+      type: String,
+      default: "",
+    },
+  },
+};
 </script>
