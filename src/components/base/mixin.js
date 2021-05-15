@@ -29,6 +29,10 @@ export default {
         }
     },
 
+    mounted() {
+        this.$el.setAttribute("id", this.$attrs.id);
+    },
+
     watch: {
         id: "scrollIntoView",
         highlightedComponentId: "onHighlightedIdChange"
