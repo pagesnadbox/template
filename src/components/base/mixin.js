@@ -22,7 +22,7 @@ export default {
     },
 
     created() {
-        this.clearHighlighttBind = () => {
+        this.clearHighlightBind = () => {
             if (this.isMobile) {
                 this.clearHighlight();
             }
@@ -168,7 +168,7 @@ export default {
                 if (this.isMobile) {
                     EventBus.$emit(events.CLEAR_COMPONENT_HIGHLIGHT)
                     this.highlight();
-                    EventBus.$once(events.CLEAR_COMPONENT_HIGHLIGHT, this.clearHighlighttBind)
+                    EventBus.$once(events.CLEAR_COMPONENT_HIGHLIGHT, this.clearHighlightBind)
                 }
 
                 event.preventDefault()
