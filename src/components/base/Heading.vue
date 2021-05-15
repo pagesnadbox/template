@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" v-bind="attrs" v-on="listeners" :style="stylesObject">
+  <component :is="tag" v-bind="attrs" v-on="listeners">
     <template v-if="title">
       {{ title }}
     </template>
@@ -10,11 +10,12 @@
 
 <script>
 import mixin from "./mixin";
+import colorMixin from "./colorMixin";
 
 export default {
   name: "BaseHeading",
 
-  mixins: [mixin],
+  mixins: [mixin, colorMixin],
 
   inject: {
     theme: {
@@ -54,10 +55,6 @@ export default {
       default: "",
     },
 
-    color: {
-      type: String,
-    },
-
     mobileSize: {
       type: String,
       default: "",
@@ -91,12 +88,6 @@ export default {
       ];
 
       return classes;
-    },
-
-    stylesObject() {
-      return {
-        color: this.color,
-      };
     },
 
     fontSize() {

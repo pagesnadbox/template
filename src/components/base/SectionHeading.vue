@@ -1,7 +1,6 @@
 <template>
   <v-sheet
     class="base-section-heading"
-    :style="styles"
     v-bind="attrs"
     v-on="listeners"
   >

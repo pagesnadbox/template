@@ -1,5 +1,5 @@
 <template>
-  <div :style="wrapperStyles">
+  <div>
     <v-text-field
       :readonly="allowEdit"
       hide-details
@@ -23,7 +23,7 @@ export default {
   },
 
   computed: {
-    wrapperStyles() {
+    styles() {
       const styles = {};
 
       if (this.isDesktop) {

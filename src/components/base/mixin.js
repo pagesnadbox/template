@@ -48,36 +48,24 @@ export default {
                 ...this.$attrs,
                 ...this.$props,
                 class: this.mixinClasses,
+                style: this.mixinStyles
             }
         },
 
         mixinClasses() {
             return [
-                ...this.marginClasses,
-                ...this.paddingClasses,
                 ...(this.classes || []),
                 ...(this.hasHighlight ? ['hightlight'] : []),
             ]
         },
 
-        marginClasses() {
-            const { ma, ml, mr, mt, mb } = this.$attrs;
-
-            return Object.entries({ ma, ml, mr, mt, mb }).map(([key, value]) => {
-                if (value) {
-                    return `${key}-${value}`;
-                }
-            }).filter(Boolean)
-        },
-
-        paddingClasses() {
-            const { pa, pl, pr, pt, pb } = this.$attrs;
-
-            return Object.entries({ pa, pl, pr, pt, pb }).map(([key, value]) => {
-                if (value) {
-                    return `${key}-${value}`;
-                }
-            }).filter(Boolean)
+        mixinStyles() {
+            return {
+                ...(this.styles || {}),
+                ...(this.colorStyles || {}),
+                margin: this.$attrs.margin,
+                padding: this.$attrs.padding
+            }
         },
 
         hasHighlight() {

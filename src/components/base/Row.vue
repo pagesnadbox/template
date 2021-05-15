@@ -1,5 +1,5 @@
 <template>
-  <v-row v-bind="attrs" v-on="listeners" class="fill-height">
+  <v-row v-bind="attrs" v-on="listeners">
     <slot />
   </v-row>
 </template>
@@ -17,6 +17,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    preventWrap: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
@@ -25,6 +29,11 @@ export default {
 
       if (this.fillHeight) {
         classes.push("fill-height");
+      }
+
+      if (this.preventWrap) {
+        classes.push("flex-nowrap");
+        classes.push("overflow-x-auto");
       }
 
       return classes;

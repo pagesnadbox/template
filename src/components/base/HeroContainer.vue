@@ -3,7 +3,6 @@
     class="base-divider"
     v-bind="attrs"
     :max-width="maxWidth"
-    :style="styles"
     v-on="listeners"
   >
     <v-container>

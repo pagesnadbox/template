@@ -7,7 +7,6 @@
         color || ($vuetify.theme.isDark ? 'grey darken-3' : 'grey lighten-4')
       "
       :size="outlineSize"
-      :style="styles"
       class="base-avatar__outline"
       style="opacity: 0.4"
       v-on="listeners"

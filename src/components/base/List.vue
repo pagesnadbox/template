@@ -1,5 +1,5 @@
 <template>
-  <v-container v-bind="attrs" :style="styles" v-on="listeners">
+  <v-container v-bind="attrs" v-on="listeners">
     <v-row no-gutters v-if="items.length">
       <v-col
         v-for="(item, i) in items.filter(i => !i.hidden)"
