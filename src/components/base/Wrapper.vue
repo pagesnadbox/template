@@ -5,19 +5,42 @@
     v-else-if="!component.hidden"
     :is="component.componentName"
     v-bind="component"
-    :id="`id-${component.key}`"
+    :id="id"
   >
-    <base-wrapper :key="i" v-for="(slot, i) in slots" :component="slot" />
+    <base-wrapper
+      :parentId="id"
+      :key="i"
+      v-for="(slot, i) in slots"
+      :component="slot"
+    />
   </component>
 </template>
 
 <script>
 export default {
   name: "BaseWrapper",
-  props: ["component", "id"],
+  props: {
+    component: {
+      type: Object,
+    },
+
+    parentId: {
+      type: String,
+      default: "",
+    },
+  },
+
   computed: {
     slots() {
       return this.component.slots || {};
+    },
+
+    id() {
+      if (this.parentId) {
+        return `${this.parentId}-${this.component.key}`;
+      }
+
+      return this.component.key;
     },
   },
 

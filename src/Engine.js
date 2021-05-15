@@ -43,6 +43,10 @@ class API extends EventEmitter {
         this._attachEvents();
     }
 
+    highlight(componentId) {
+        store.dispatch("settings/setHighlightedComponentId", componentId)
+    }
+
     setConfig(config = {}) {
         store.dispatch(`config/setData`, config.app);
     }
