@@ -1,5 +1,5 @@
 <template>
-  <base-wrapper :key="counter" :component="data" />
+  <base-wrapper id="app" />
 </template>
 
 <script>
@@ -15,11 +15,11 @@ export default {
   },
 
   watch: {
-    "data.dark": {
+    "data.app.dark": {
       immediate: true,
       handler: "onDarkChange",
     },
-    "data.primary": {
+    "data.app.primary": {
       immediate: true,
       handler: "onPrimaryColor",
     },

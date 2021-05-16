@@ -20,8 +20,6 @@ export default (options) => {
         },
         getters: {
             ...defaultModule.getters,
-            itemsFormatted: (state, getters) => getters.items.filter((s) => !s.hidden),
-            itemsFormattedKeyOnly: (state, getters) => getters.itemsFormatted.map((s) => s.key),
         },
     }
 }

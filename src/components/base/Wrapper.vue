@@ -8,39 +8,31 @@
     :id="id"
   >
     <base-wrapper
-      :parentId="id"
       :key="i"
       v-for="(slot, i) in slots"
-      :component="slot"
+      :id="slot"
     />
   </component>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: "BaseWrapper",
   props: {
-    component: {
-      type: Object,
-    },
-
-    parentId: {
+    id: {
       type: String,
       default: "",
     },
   },
 
   computed: {
+    ...mapGetters("config", ["getComponent"]),
+    component() {
+      return this.getComponent(this.id)
+    },
     slots() {
       return this.component.slots || {};
-    },
-
-    id() {
-      if (this.parentId) {
-        return `${this.parentId}-${this.component.key}`;
-      }
-
-      return this.component.key;
     },
   },
 

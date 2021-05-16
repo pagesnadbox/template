@@ -13,73 +13,45 @@ export const set = (property, preState) => {
 export const toggle = property => state => (state[property] = !state[property])
 
 export const setProp = (state, payload) => {
-    let data = state.data;
-    let paths = payload.id.split("-").slice(1);
-
-    paths.forEach(path => {
-        data = data.slots.find(s => s.key === path);
-    });
-
-    Vue.set(data, payload.key, payload.value)
-
-    state.counter++
+    Vue.set(state.data, payload.key, payload.value)
 }
 
 export const addSlot = (state, payload) => {
-    let data = state.data;
-    let paths = payload.id.split("-").slice(1);
+    const id = payload.id
+    const parentId = payload.parentId
 
-    paths.forEach(path => {
-        data = data.slots.find(s => s.key === path);
-    });
-
-    data = data.slots;
-
-    Vue.set(data, data.length, payload.value)
-
-    state.counter++
+    state.data[id] = payload;
+    state.data[parentId].slots.push(id)
 }
 
 export const removeSlot = (state, payload) => {
-    let data = state.data;
-    let paths = payload.id.split("-").slice(1);
+    const id = payload.id
+    const parentId = payload.parentId
+    const parent = state.data[parentId];
 
-    const lastNodeKey = paths.pop(); // remove the last id and use the parent of the target node
+    const slotIndex = parent.slots.indexOf(id)
 
-    paths.forEach(path => {
-        data = data.slots.find(s => s.key === path);
-    });
-
-    data = data.slots;
-
-    const index = data.findIndex(s => s.key === lastNodeKey);
-
-    if (index > -1) {
-        data.splice(index, 1);
-        state.counter++
+    if (slotIndex > -1) {
+        parent.slots.splice(slotIndex, 1)
     }
+    delete state.data[id]
 }
 
 export const moveSlot = (state, payload) => {
-    let data = state.data;
-    let paths = payload.id.split("-").slice(1);
+  const id = payload.item.id;
+  const to = state.data[payload.to];
 
-    paths.pop(); // remove the last id and use the parent of the target node
+  if (!payload.copy) {
+    const parentId = payload.item.parentId
+    const parent = state.data[parentId];
+    const slotIndex = parent.slots.indexOf(id)
 
-    paths.forEach(path => {
-        data = data.slots.find(s => s.key === path);
-    });
-
-    data = data.slots;
-
-    const dragIndex = data.findIndex(s => s.key === payload.dragged.key);
-    const dropIndex = data.findIndex(s => s.key === payload.dropped.key);
-
-    if (dragIndex > -1 && dropIndex > -1) {
-        data.splice(dragIndex, 1);
-        data.splice(dropIndex, 0, payload.dragged);
-        state.counter++
+    if (slotIndex > -1) {
+      parent.slots.splice(slotIndex, 1)
     }
+  }
+
+  to.slots.push(id)
 }
 
 export const getDefaultModule = () => {
@@ -109,6 +81,9 @@ export const getDefaultModule = () => {
             },
         },
         getters: {
+            getComponent: (state) => (id) => {
+                return state.data[id] || {}
+            }
         },
     }
 }

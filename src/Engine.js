@@ -48,7 +48,7 @@ class API extends EventEmitter {
     }
 
     setConfig(config = {}) {
-        store.dispatch(`config/setData`, config.app);
+        store.dispatch(`config/setData`, config);
     }
 
     replaceConfig(state) {
