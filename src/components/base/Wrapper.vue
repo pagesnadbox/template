@@ -7,11 +7,7 @@
     v-bind="component"
     :id="id"
   >
-    <base-wrapper
-      :key="i"
-      v-for="(slot, i) in slots"
-      :id="slot"
-    />
+    <base-wrapper :key="i" v-for="(slot, i) in slots" :id="slot" />
   </component>
 </template>
 
@@ -34,6 +30,13 @@ export default {
     slots() {
       return this.component.slots || {};
     },
+  },
+
+  watch: {
+    component: {
+      deep:true,
+      handler: console.error
+    }
   },
 
   methods: {
