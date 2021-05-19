@@ -24,7 +24,7 @@ export const addSlot = (state, payload) => {
     const id = uuidv4();
     const parentId = payload.parentId
 
-    Vue.set(state.data, payload.id, { ...payload, id })
+    Vue.set(state.data, id, { ...payload, id })
     state.data[parentId].slots.push(id)
 }
 
