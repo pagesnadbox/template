@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="drawerModel">
+  <v-navigation-drawer app v-model="drawerModel">
     <div class="fill-height" v-bind="attrs" v-on="listeners">
       <slot></slot>
     </div>

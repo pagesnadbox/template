@@ -141,12 +141,14 @@ export default {
         },
 
         highlight() {
+            if (!this.allowEdit) return;
             this.mouseover = true
             this.$action("addComponent", { name: this.$options.name, id: this.$attrs.id })
 
         },
 
         clearHighlight() {
+            if (!this.allowEdit) return;
             this.mouseover = false
             this.$action("removeComponent", { name: this.$options.name, id: this.$attrs.id })
 

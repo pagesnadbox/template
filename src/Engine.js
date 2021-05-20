@@ -24,11 +24,13 @@ class API extends EventEmitter {
         return store
     }
 
-    async init({ imageService, config = {}, plugins = [], preventMount = false } = {}) {
+    async init({ baseUrl, config = {}, plugins = [], preventMount = false } = {}) {
         store = Store({ modules: config, plugins })
 
+        const imageService = ImagesService.getInstance()
+        imageService.baseUrl = baseUrl
         Vue.prototype.$action = (action, value) => EventBus.$emit(events.SETTINGS_ACTION, { key: action, value });
-        Vue.prototype.$imageService = imageService || ImagesService.getInstance();;
+        Vue.prototype.$imageService = imageService
 
         this.app = new Vue({
             vuetify,
@@ -48,7 +50,7 @@ class API extends EventEmitter {
     }
 
     setConfig(config = {}) {
-        store.dispatch(`config/setData`, config);
+        store.dispatch(`engine/setData`, config);
     }
 
     replaceConfig(state) {
@@ -64,7 +66,7 @@ class API extends EventEmitter {
 
     _attachEvents() {
         Object.keys(API.events).forEach(key => {
-            EventBus.$on(API.events[key], (data) => this.emit(API.events[key], data));
+            EventBus.$on(API.events[key], (data) => this.emit("message", { engineEvent: API.events[key], params: data }));
         });
     }
 }

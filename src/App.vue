@@ -11,7 +11,7 @@ export default {
   name: "App",
 
   computed: {
-    ...mapState("config", ["data", "counter"]),
+    ...mapState("engine", ["data", "counter"]),
   },
 
   watch: {

@@ -23,30 +23,21 @@ export default {
   },
 
   computed: {
-    ...mapGetters("config", ["getComponent"]),
+    ...mapGetters("engine", ["getComponent"]),
+
     component() {
       return this.getComponent(this.id)
     },
+
     slots() {
       return this.component.slots || {};
     },
-  },
-
-  watch: {
-    component: {
-      deep:true,
-      handler: console.error
-    }
   },
 
   methods: {
     isString(value) {
       return typeof value === "string";
     },
-  },
-
-  created() {
-    console.log(this, "created");
   },
 };
 </script>

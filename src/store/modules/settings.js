@@ -61,8 +61,16 @@ export default (options) => {
                     state.history.push(data)
                 }
             },
+            SET_DATA: (state, payload) => {
+                Object.keys(payload).forEach(key => {
+                    state[key] = payload;
+                })
+            }
         },
         actions: {
+            setData({ commit }, payload) {
+                commit('SET_DATA', payload)
+            },
             setShowHighlighter({ commit }, payload) {
                 commit('SET_SHOW_HIGHLIGHTER', payload)
             },
