@@ -111,16 +111,16 @@ export default {
 
             if (this.editable && this.config.editable) {
                 listeners = {
-                    click: this.onClick.bind(this),
-                    mouseenter: this.onMouseEnter.bind(this),
-                    mouseleave: this.onMouseLeave.bind(this),
+                    click: this.onMixinClick.bind(this),
+                    mouseenter: this.onMixinMouseEnter.bind(this),
+                    mouseleave: this.onMixinMouseLeave.bind(this),
                 }
             }
 
             return listeners
         },
 
-        onMouseEnter(...args) {
+        onMixinMouseEnter(...args) {
             if (this.$listeners.mouseenter) {
                 this.$listeners.mouseenter(...args)
             }
@@ -130,7 +130,7 @@ export default {
             }
         },
 
-        onMouseLeave(...args) {
+        onMixinMouseLeave(...args) {
             if (this.$listeners.mouseleave) {
                 this.$listeners.mouseleave(...args)
             }
@@ -160,7 +160,7 @@ export default {
             }
         },
 
-        onClick(...args) {
+        onMixinClick(...args) {
             if (this.$listeners.click) {
                 this.$listeners.click(...args)
             }
