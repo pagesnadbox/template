@@ -8,7 +8,7 @@ export default class Adapter extends EventEmitter {
     }
 
     onMessage(event) {
-        if (event.origin !== "http://localhost:8081") {
+        if (event.origin !== "http://192.168.1.4:8081") {
             return;
         }
 
