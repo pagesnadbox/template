@@ -4,14 +4,15 @@
     :depressed="depressed"
     :min-width="minWidth"
     :tile="tile"
-    :text="textOnly"
     class="font-weight-bold"
     v-bind="{ ...attrs, ...sizeObject }"
+    :text="textOnly"
     :target="targetFormatted"
     :block="block || blockOnMobile"
     v-on="listeners"
   >
-    <slot />
+    <span v-if="text">{{text}}</span>
+    <slot v-else />
 
     <v-icon v-if="iconSrc" right>
       {{ iconSrc }}
@@ -74,6 +75,11 @@ export default {
     },
 
     size: {
+      type: String,
+      default: "",
+    },
+
+    text: {
       type: String,
       default: "",
     },

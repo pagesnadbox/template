@@ -1,41 +1,44 @@
 <template>
-  <Index />
+  <base-wrapper id="app" />
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapState } from "vuex";
 
-import Index from "@/layouts/home/Index.vue";
-import { EventBus, events } from './utils/eventBus';
+import { EventBus, events } from "./utils/eventBus";
 
 export default {
-  components: {
-    Index,
-  },
-
   name: "App",
 
   computed: {
-    ...mapState("app", ["data"]),
+    ...mapState("engine", ["data", "counter"]),
   },
 
   watch: {
-    "data.dark": {
+    "data.app.dark": {
       immediate: true,
       handler: "onDarkChange",
     },
-    "data.primary": {
+    "data.app.primary": {
       immediate: true,
       handler: "onPrimaryColor",
     },
   },
-
+  props: {
+    fillHeight: {
+      type: Boolean,
+      default: false,
+    },
+  },
   methods: {
     onDarkChange(value) {
       this.$vuetify.theme.dark = value;
     },
     onPrimaryColor(value) {
-      EventBus.$emit(events.THEME_COLOR_CHANGE, { key: "primary_pagesandbox", value });
+      EventBus.$emit(events.THEME_COLOR_CHANGE, {
+        key: "primary_pagesandbox",
+        value,
+      });
       this.$vuetify.theme.currentTheme.primary_pagesandbox = value;
     },
   },

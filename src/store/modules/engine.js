@@ -3,10 +3,12 @@ import { getDefaultModule } from '@/utils/vuex'
 const defaultModule = getDefaultModule()
 
 const stateFn = (options) => ({
-    data: options.app,
+    data: options.config,
+    counter: 0
 })
 
 export default (options) => {
+    console.error(options)
     const state = stateFn(options)
     return {
         namespaced: true,
@@ -19,8 +21,6 @@ export default (options) => {
         },
         getters: {
             ...defaultModule.getters,
-            itemsFormatted: (state, getters) => getters.items.filter((s) => !s.hidden),
-            itemsFormattedKeyOnly: (state, getters) => getters.itemsFormatted.map((s) => s.key),
         },
     }
 }

@@ -1,9 +1,5 @@
 <template>
-  <component
-    :is="tag"
-    v-bind="attrs"
-    v-on="listeners"
-  >
+  <component :is="tag" v-bind="attrs" v-on="listeners">
     <template v-if="title">
       {{ title }}
     </template>
@@ -13,87 +9,92 @@
 </template>
 
 <script>
-  import mixin from './mixin'
+import mixin from "./mixin";
+import colorMixin from "./colorMixin";
 
-  export default {
-    name: 'BaseHeading',
+export default {
+  name: "BaseHeading",
 
-    mixins: [mixin],
+  mixins: [mixin, colorMixin],
 
-    inject: {
-      theme: {
-        default: () => ({ isDark: false }),
-      },
+  inject: {
+    theme: {
+      default: () => ({ isDark: false }),
+    },
+
+    heading: {
+      default: () => ({ align: "left" }),
+    },
+  },
+
+  provide() {
+    return {
       heading: {
-        default: () => ({ align: 'left' }),
+        align: this.align,
+      },
+    };
+  },
+
+  props: {
+    align: {
+      type: String,
+      default() {
+        return this.heading.align;
       },
     },
 
-    provide () {
-      return {
-        heading: {
-          align: this.align,
-        },
-      }
-    },
-
-    props: {
-      align: {
-        type: String,
-        default () {
-          return this.heading.align
-        },
-      },
-      dense: {
-        type: Boolean,
-        default () {
-          return this.isDense
-        },
-      },
-      size: {
-        type: String,
-        default: 'text-h3',
-      },
-      space: {
-        type: [Number, String],
-        default: 4,
-      },
-      mobileSize: {
-        type: String,
-        default: 'text-h4',
-      },
-      mobileBreakpoint: {
-        type: [Number, String],
-        default: 768,
-      },
-      tag: {
-        type: String,
-        default: 'h1',
-      },
-      title: String,
-      weight: {
-        type: String,
-        default: 'black',
+    dense: {
+      type: Boolean,
+      default() {
+        return this.isDense;
       },
     },
 
-    computed: {
-      classes () {
-        const classes = [
-          this.fontSize,
-          `font-weight-${this.weight}`,
-          `mb-${this.space}`,
-          `text-${this.align}`,
-          this.theme.isDark && 'white--text',
-        ]
-
-        return classes
-      },
-      fontSize () {
-        return this.$vuetify.breakpoint.width >= this.mobileBreakpoint
-          ? this.size
-          : this.mobileSize
-      },
+    size: {
+      type: String,
+      default: "",
     },
-  }
+
+    mobileSize: {
+      type: String,
+      default: "",
+    },
+
+    mobileBreakpoint: {
+      type: [Number, String],
+      default: 768,
+    },
+
+    tag: {
+      type: String,
+      default: "h1",
+    },
+
+    title: String,
+
+    weight: {
+      type: String,
+      default: "",
+    },
+  },
+
+  computed: {
+    classes() {
+      const classes = [
+        this.fontSize,
+        `font-weight-${this.weight}`,
+        `text-${this.align}`,
+        this.theme.isDark && "white--text",
+      ];
+
+      return classes;
+    },
+
+    fontSize() {
+      return this.$vuetify.breakpoint.width >= this.mobileBreakpoint
+        ? this.size
+        : this.mobileSize;
+    },
+  },
+};
 </script>

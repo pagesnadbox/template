@@ -6,6 +6,7 @@ const stateFn = () => ({
     allowEdit: false,
     open: false,
     showHighlighter: false,
+    highlightedComponentId: null,
     images: {},
 
     showGallery: false,
@@ -26,6 +27,7 @@ export default (options) => {
         state,
         mutations: {
             SET_SHOW_HIGHLIGHTER: set('showHighlighter'),
+            SET_HIGHLIGHTED_COMPONENT_ID: set('highlightedComponentId'),
             SET_CAN_REDO: set('canRedo'),
             SET_CAN_UNDO: set('canUndo'),
             SET_ALLOW_EDIT: set('allowEdit'),
@@ -59,10 +61,21 @@ export default (options) => {
                     state.history.push(data)
                 }
             },
+            SET_DATA: (state, payload) => {
+                Object.keys(payload).forEach(key => {
+                    state[key] = payload;
+                })
+            }
         },
         actions: {
+            setData({ commit }, payload) {
+                commit('SET_DATA', payload)
+            },
             setShowHighlighter({ commit }, payload) {
                 commit('SET_SHOW_HIGHLIGHTER', payload)
+            },
+            setHighlightedComponentId({ commit }, payload) {
+                commit('SET_HIGHLIGHTED_COMPONENT_ID', payload)
             },
             setCanRedo({ commit }, payload) {
                 commit('SET_CAN_REDO', payload)

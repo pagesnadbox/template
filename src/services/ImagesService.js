@@ -13,15 +13,19 @@ class ImagesService {
     }
 
     get BASE_URL() {
-        return __webpack_public_path__
+        return this.baseUrl || __webpack_public_path__
+    }
+
+    set BASE_URL(value) {
+        return this.baseUrl = value
     }
 
     transformURL({ assetName }) {
         if (this.defaultImages.indexOf(assetName) > -1) {
-            return `${this.BASE_URL}${assetName}`;
+            return assetName;
         }
 
-        return `${this.BASE_URL}assets/${assetName}`;
+        return `${this.BASE_URL}/images/${assetName}`;
     }
 }
 

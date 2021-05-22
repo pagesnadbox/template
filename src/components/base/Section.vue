@@ -1,10 +1,10 @@
 <template>
   <v-sheet
-    :style="styles"
     tile
     v-bind="attrs"
     :color="color"
     v-on="listeners"
+    :max-width="maxWidth"
   >
     <slot />
   </v-sheet>

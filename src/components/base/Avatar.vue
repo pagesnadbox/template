@@ -1,5 +1,5 @@
 <template>
-  <div class="base-avatar d-inline-flex">
+  <div class="base-avatar d-inline-flex" :style="mixinStyles">
     <v-avatar
       v-if="outlined"
       v-bind="attrs"

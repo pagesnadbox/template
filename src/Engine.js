@@ -24,11 +24,13 @@ class API extends EventEmitter {
         return store
     }
 
-    async init({ imageService, config = {}, plugins = [], preventMount = false } = {}) {
-        store = Store({ modules: config, plugins })
+    async init({ baseUrl, config = {}, plugins = [], preventMount = false } = {}) {
+        store = Store({ modules: { config }, plugins })
 
+        const imageService = ImagesService.getInstance()
+        imageService.baseUrl = baseUrl
         Vue.prototype.$action = (action, value) => EventBus.$emit(events.SETTINGS_ACTION, { key: action, value });
-        Vue.prototype.$imageService = imageService || ImagesService.getInstance();;
+        Vue.prototype.$imageService = imageService
 
         this.app = new Vue({
             vuetify,
@@ -43,18 +45,12 @@ class API extends EventEmitter {
         this._attachEvents();
     }
 
-    setConfig(config) {
-        [
-            "app",
-            "hero",
-            "themeFeatures",
-            "features",
-            "affiliates",
-            "social",
-            "footer"
-        ].forEach((key) => {
-            store.dispatch(`${key}/setData`, config[key].data || config[key]);
-        })
+    highlight(componentId) {
+        store.dispatch("settings/setHighlightedComponentId", componentId)
+    }
+
+    setConfig(config = {}) {
+        store.dispatch(`engine/setData`, config);
     }
 
     replaceConfig(state) {
@@ -70,20 +66,9 @@ class API extends EventEmitter {
 
     _attachEvents() {
         Object.keys(API.events).forEach(key => {
-            EventBus.$on(API.events[key], (data) => this.emit(API.events[key], data));
+            EventBus.$on(API.events[key], (data) => this.emit("message", { engineEvent: API.events[key], params: data }));
         });
     }
-
-    // setThemeProp(payload) {
-    //     this.app.$vuetify.theme[payload.key] = payload.value;
-    // }
-
-    // setThemeColor(payload) {
-    //     const target = this.app.$vuetify.theme.isDark ? "dark" : "light";
-
-    //     Vue.set(this.app.$vuetify.theme.themes[target], payload.key, payload.value)
-    // }
-
 }
 
 export default API;

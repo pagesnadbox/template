@@ -1,4 +1,4 @@
-import { mapActions, mapState } from 'vuex'
+import { mapState } from 'vuex'
 import { EventBus, events } from "../../utils/eventBus"
 
 export default {
@@ -24,17 +24,23 @@ export default {
     created() {
         this.clearHighlightBind = () => {
             if (this.isMobile) {
-                this.clearHighligh();
+                this.clearHighlight();
             }
         }
     },
 
+    mounted() {
+        this.$el.setAttribute("id", this.$attrs.id);
+    },
+
     watch: {
-        id: "scrollIntoView"
+        id: "scrollIntoView",
+        highlightedComponentId: "onHighlightedIdChange"
+
     },
 
     computed: {
-        ...mapState('settings', ['id', 'allowEdit', 'open', 'showHighlighter']),
+        ...mapState('settings', ['id', 'allowEdit', 'open', 'showHighlighter', "highlightedComponentId"]),
 
         listeners() {
             return {
@@ -48,6 +54,7 @@ export default {
                 ...this.$attrs,
                 ...this.$props,
                 class: this.mixinClasses,
+                style: this.mixinStyles
             }
         },
 
@@ -56,6 +63,15 @@ export default {
                 ...(this.classes || []),
                 ...(this.hasHighlight ? ['hightlight'] : []),
             ]
+        },
+
+        mixinStyles() {
+            return {
+                ...(this.styles || {}),
+                ...(this.colorStyles || {}),
+                margin: this.$attrs.margin,
+                padding: this.$attrs.padding
+            }
         },
 
         hasHighlight() {
@@ -81,47 +97,58 @@ export default {
 
     methods: {
 
+        onHighlightedIdChange(id) {
+            if (id === this.$attrs.id && this.allowEdit) {
+                this.highlight();
+                this.scrollIntoView(id)
+            } else if (this.hasHighlight) {
+                this.clearHighlight();
+            }
+        },
+
         getMixinListeners() {
             let listeners = {}
 
             if (this.editable && this.config.editable) {
                 listeners = {
-                    click: this.onClick.bind(this),
-                    mouseenter: this.onMouseEnter.bind(this),
-                    mouseleave: this.onMouseLeave.bind(this),
+                    click: this.onMixinClick.bind(this),
+                    mouseenter: this.onMixinMouseEnter.bind(this),
+                    mouseleave: this.onMixinMouseLeave.bind(this),
                 }
             }
 
             return listeners
         },
 
-        onMouseEnter(...args) {
+        onMixinMouseEnter(...args) {
             if (this.$listeners.mouseenter) {
                 this.$listeners.mouseenter(...args)
             }
 
             if (this.isDesktop) {
-                this.highligh()
+                this.highlight()
             }
         },
 
-        onMouseLeave(...args) {
+        onMixinMouseLeave(...args) {
             if (this.$listeners.mouseleave) {
                 this.$listeners.mouseleave(...args)
             }
 
             if (this.isDesktop) {
-                this.clearHighligh();
+                this.clearHighlight();
             }
         },
 
-        highligh() {
+        highlight() {
+            if (!this.allowEdit) return;
             this.mouseover = true
             this.$action("addComponent", { name: this.$options.name, id: this.$attrs.id })
 
         },
 
-        clearHighligh() {
+        clearHighlight() {
+            if (!this.allowEdit) return;
             this.mouseover = false
             this.$action("removeComponent", { name: this.$options.name, id: this.$attrs.id })
 
@@ -133,7 +160,7 @@ export default {
             }
         },
 
-        onClick(...args) {
+        onMixinClick(...args) {
             if (this.$listeners.click) {
                 this.$listeners.click(...args)
             }
@@ -146,7 +173,7 @@ export default {
 
                 if (this.isMobile) {
                     EventBus.$emit(events.CLEAR_COMPONENT_HIGHLIGHT)
-                    this.highligh();
+                    this.highlight();
                     EventBus.$once(events.CLEAR_COMPONENT_HIGHLIGHT, this.clearHighlightBind)
                 }
 

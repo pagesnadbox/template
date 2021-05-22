@@ -1,10 +1,5 @@
 <template>
-  <v-sheet
-    class="base-section-heading"
-    :style="styles"
-    v-bind="attrs"
-    v-on="listeners"
-  >
+  <v-sheet class="base-section-heading" v-bind="attrs" v-on="listeners">
     <base-avatar
       v-if="icon"
       :icon="icon"
@@ -58,63 +53,76 @@
 
 <script>
 // Mixins
-  import Heading from '@/mixins/heading'
-  import mixin from './mixin'
+import Heading from "@/mixins/heading";
+import mixin from "./mixin";
 
-  export default {
-    name: 'BaseSectionHeading',
+export default {
+  name: "BaseSectionHeading",
 
-    mixins: [Heading, mixin],
+  mixins: [Heading, mixin],
 
-    props: {
-      editableProps: {
-        type: Boolean,
-        default: true,
-      },
-      dark: {
-        type: Boolean,
-        default: false,
-      },
-      textDark: {
-        type: Boolean,
-        default: false,
-      },
-      size: {
-        type: String,
-        default: 'center',
-      },
-      iconColor: {
-        type: String,
-        default: '',
-      },
-      align: {
-        type: String,
-        default: 'center',
-      },
-      color: {
-        type: String,
-      },
-      icon: String,
-      outlined: Boolean,
-      space: {
-        type: [Number, String],
-        default: 12,
-      },
-      subtitle: String,
-      text: String,
-      title: String,
+  props: {
+    editableProps: {
+      type: Boolean,
+      default: false,
     },
 
-    computed: {
-      classes () {
-        return [`text-${this.align}`]
-      },
-      ids () {
-        return {
-          subheading: `${this.$attrs.id}-subheading`,
-          body: `${this.$attrs.id}-body`,
-        }
-      },
+    dark: {
+      type: Boolean,
+      default: false,
     },
-  }
+
+    textDark: {
+      type: Boolean,
+      default: false,
+    },
+
+    size: {
+      type: String,
+      default: "center",
+    },
+
+    iconColor: {
+      type: String,
+      default: "",
+    },
+
+    align: {
+      type: String,
+      default: "center",
+    },
+
+    color: {
+      type: String,
+    },
+
+    icon: String,
+
+    outlined: Boolean,
+
+    space: {
+      type: [Number, String],
+      default: 12,
+    },
+
+    subtitle: String,
+
+    text: String,
+
+    title: String,
+  },
+
+  computed: {
+    classes() {
+      return [`text-${this.align}`];
+    },
+
+    ids() {
+      return {
+        subheading: `${this.$attrs.id}-subheading`,
+        body: `${this.$attrs.id}-body`,
+      };
+    },
+  },
+};
 </script>

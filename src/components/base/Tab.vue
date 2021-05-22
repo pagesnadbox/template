@@ -1,7 +1,7 @@
 <template>
-  <form :action="action" :method="method" class="pa-0">
-    <slot></slot>
-  </form>
+  <v-tab @click="onClick" v-on="listeners" v-bind="attrs">
+    {{ text }}
+  </v-tab>
 </template>
 
 <script>
@@ -11,15 +11,22 @@ export default {
   mixins: [mixin],
 
   props: {
-    action: {
+    text: {
       type: String,
       default: "",
     },
-
-    method: {
+    goTo: {
       type: String,
       default: "",
     },
   },
+
+  methods: {
+    onClick() {
+      this.$vuetify.goTo(`#${this.goTo}`);
+    },
+  },
 };
 </script>
+
+<style></style>

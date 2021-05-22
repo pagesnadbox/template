@@ -13,53 +13,30 @@ export const set = (property, preState) => {
 export const toggle = property => state => (state[property] = !state[property])
 
 export const setProp = (state, payload) => {
-    let data = state.data;
-    let paths = payload.id.split("-");
-    
-    paths = paths.slice(1);
-    paths.forEach(path => {
-      data = data[path];
-    });
-
-    Vue.set(data, payload.key, payload.value)
+    state.data[payload.id] = {
+        ...state.data[payload.id],
+        [payload.key]: payload.value
+    }
 }
 
-export const getDefaultModule = (defaultItem) => {
+export const getDefaultModule = () => {
     return {
         mutations: {
             SET_DATA: set("data"),
             SET_PROP: setProp,
-            SET_ITEMS: (state, payload) => {
-                Vue.set(state.data.list, 'items', payload)
-            },
-            ADD_ITEM: (state, payload) => {
-                state.data.list.items.push(payload)
-            },
-            REMOVE_ITEM: (state, payload) => {
-                state.data.list.items.splice(payload, 1)
-            },
         },
         actions: {
-            setData ({ commit }, payload) {
+            setData({ commit }, payload) {
                 commit('SET_DATA', payload)
             },
-            setProp ({ commit }, payload) {
+            setProp({ commit }, payload) {
                 commit('SET_PROP', payload)
-            },
-            setItems ({ commit }, payload) {
-                commit('SET_ITEMS', payload)
-            },
-            addItem ({ commit, state }) {
-                const item = defaultItem()
-
-                commit('ADD_ITEM', item)
-            },
-            removeItem ({ commit }, payload) {
-                commit('REMOVE_ITEM', payload)
             },
         },
         getters: {
-            items: (state) => state.data.list.items,
+            getComponent: (state) => (id) => {
+                return state.data[id] || {}
+            }
         },
     }
 }

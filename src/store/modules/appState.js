@@ -1,9 +1,7 @@
-import { getDefaultModule } from '@/utils/vuex'
-
-const defaultModule = getDefaultModule()
+import { set } from '@/utils/vuex'
 
 const stateFn = (options) => ({
-    data: options.footer,
+    drawer: null,
 })
 
 export default (options) => {
@@ -12,12 +10,15 @@ export default (options) => {
         namespaced: true,
         state,
         mutations: {
-            ...defaultModule.mutations,
+            SET_DRAWER: set("drawer"),
         },
         actions: {
-            ...defaultModule.actions,
+            setDrawerModel({ commit }, payload) {
+                commit("SET_DRAWER", payload)
+            }
         },
         getters: {
+
         },
     }
 }

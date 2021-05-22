@@ -5,11 +5,12 @@
 </template>
 <script>
 import mixin from "./mixin";
+import colorMixin from "./colorMixin";
 
 export default {
   name: "BaseText",
 
-  mixins: [mixin],
+  mixins: [mixin, colorMixin],
 
   props: {
     text: {

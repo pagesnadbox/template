@@ -1,5 +1,6 @@
 <template>
   <v-app-bar
+    app
     id="home-app-bar"
     elevation="1"
     v-bind="attrs"
