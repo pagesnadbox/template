@@ -6,29 +6,29 @@ module.exports = {
       openAnalyzer: false
     }
   },
-  devServer: {
-    disableHostCheck: true,
-  },
+  // devServer: {
+  //   disableHostCheck: true,
+  // },
   lintOnSave: false,
   transpileDependencies: [
     'vuetify',
   ],
   publicPath: './',
-  chainWebpack: (config) => {
-    // Disable prefetch and preload of async modules for 'app' page
-    // config.plugins.store.delete('prefetch-app');
-    // config.plugins.store.delete('preload-app');
-    // Use this syntax if not using multipage setup
-    config.optimization.delete("splitChunks");
-    config.plugins.store.delete('prefetch');
-    config.plugins.store.delete('preload');
-    config.plugins.delete('prefetch');
-    config.plugins.delete('preload');
-    // config.plugins.store.delete('prefetch');
-    // config.plugins.store.delete('preload');
-  },
-  filenameHashing: false,
-  css: {
-    extract: true
-  },
+  // chainWebpack: (config) => {
+  //   // Disable prefetch and preload of async modules for 'app' page
+  //   // config.plugins.store.delete('prefetch-app');
+  //   // config.plugins.store.delete('preload-app');
+  //   // Use this syntax if not using multipage setup
+  //   config.optimization.delete("splitChunks");
+  //   config.plugins.store.delete('prefetch');
+  //   config.plugins.store.delete('preload');
+  //   config.plugins.delete('prefetch');
+  //   config.plugins.delete('preload');
+  //   // config.plugins.store.delete('prefetch');
+  //   // config.plugins.store.delete('preload');
+  // },
+  // filenameHashing: false,
+  // css: {
+  //   extract: true
+  // },
 }

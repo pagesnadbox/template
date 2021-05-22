@@ -1,11 +1,12 @@
 {
   "name": "pagesandbox-template",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "private": false,
   "scripts": {
     "serve": "cp -f ./buildfiles/dev/index.html ./public/; vue-cli-service serve",
     "dev": "yarn serve",
     "build": "cp -f ./buildfiles/prod/index.html ./public/; vue-cli-service build",
+    "build-template": "cp -f ./buildfiles/template/index.html ./public/; vue-cli-service build",
     "build-dev": "vue-cli-service build --mode staging",
     "lint": "vue-cli-service lint",
     "postversion": "node scripts/postversion.js"

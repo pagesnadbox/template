@@ -3,11 +3,12 @@ import { getDefaultModule } from '@/utils/vuex'
 const defaultModule = getDefaultModule()
 
 const stateFn = (options) => ({
-    data: options.app,
+    data: options.config,
     counter: 0
 })
 
 export default (options) => {
+    console.error(options)
     const state = stateFn(options)
     return {
         namespaced: true,

@@ -3,19 +3,25 @@ import Engine from "./Engine";
 import Adapter from "./Adapter";
 import Vue from "vue";
 
-const engine = new Engine();
-const adapter = new Adapter().init();
+if (!window.com.engine) {
+    const engine = new Engine();
 
-adapter.on("message", (event) => {
-    engine[event.message](event.data)
-})
+    if (window.com.template.standalone) {
+        engine.init({ config: window.com.config });
+    } else {
+        const adapter = new Adapter().init();
 
-engine.on("message", (event) => {
-    adapter.postMessage(event)
-})
+        adapter.on("message", (event) => {
+            engine[event.message](event.data)
+        })
 
-Vue.config.performance = true
+        engine.on("message", (event) => {
+            adapter.postMessage(event)
+        })
+    }
 
-window.API = window.API || {};
-window.API.Engine = Engine;
+    Vue.config.performance = true
 
+    window.API = window.API || {};
+    window.API.Engine = Engine;
+}
