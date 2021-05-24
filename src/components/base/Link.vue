@@ -12,30 +12,39 @@
 </template>
 
 <script>
-  import mixin from './mixin'
+import mixin from "./mixin";
 
-  export default {
-    name: 'BaseLink',
+export default {
+  name: "BaseLink",
 
-    mixins: [mixin],
+  mixins: [mixin],
 
-    props: {
-      
-      href: {
-        type: String,
-        default: '',
-      },
-
-      openInNewTab: {
-        type: Boolean,
-        default: true,
-      },
-
+  props: {
+    color: {
+      type: String,
+      default: "",
     },
-    computed: {
-      targetFormatted () {
-        return this.openInNewTab ? '_blank' : '_self'
-      },
+
+    href: {
+      type: String,
+      default: "",
     },
-  }
+
+    openInNewTab: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    styles() {
+      return {
+        color: this.color === "primary" ? null : this.color,
+      };
+    },
+
+    targetFormatted() {
+      return this.openInNewTab ? "_blank" : "_self";
+    },
+  },
+};
 </script>

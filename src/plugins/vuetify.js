@@ -13,13 +13,11 @@ export default new Vuetify({
         primary: '#42A5F6',
         secondary: '#050B1F',
         accent: '#204165',
-        primary_pagesandbox: "#42A5F6"
       },
       dark: {
         primary: '#50778D',
         secondary: '#0B1C3D',
         accent: '#204165',
-        primary_pagesandbox: "#50778D"
       },
     },
   },

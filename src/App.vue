@@ -36,10 +36,10 @@ export default {
     },
     onPrimaryColor(value) {
       EventBus.$emit(events.THEME_COLOR_CHANGE, {
-        key: "primary_pagesandbox",
+        key: "primary",
         value,
       });
-      this.$vuetify.theme.currentTheme.primary_pagesandbox = value;
+      this.$vuetify.theme.currentTheme.primary = value;
     },
   },
 

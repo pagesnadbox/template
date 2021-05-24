@@ -41,7 +41,7 @@ export default {
 
     color: {
       type: String,
-      default: "primary_pagesandbox",
+      default: "primary",
     },
 
     depressed: {
