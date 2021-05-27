@@ -1,6 +1,6 @@
 import EventEmitter from "eventemitter3";
 
-const builderOrigin = window.com.template.cfg.builderOrigin;
+const builderOrigin = window.com.template.cfg.builderOrigin.replace("{host}", window.location.hostname);
 export default class Adapter extends EventEmitter {
     init() {
         window.addEventListener("message", this.onMessage.bind(this))
