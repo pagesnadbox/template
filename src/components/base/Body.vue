@@ -31,10 +31,6 @@ export default {
       type: [Number, String],
       default: undefined,
     },
-    space: {
-      type: [Number, String],
-      default: 10,
-    },
     tag: {
       type: String,
       default: "p",
@@ -54,7 +50,6 @@ export default {
       return [
         this.dark ? "text--lighten-1" : "text--darken-1",
         this.justify,
-        `mb-${this.space}`,
       ];
     },
     justify() {
