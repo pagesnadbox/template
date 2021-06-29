@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import EventEmitter from 'eventemitter3';
 
-import App from './App.vue'
+import App from './EngineApp.vue'
 import { Store } from './store'
 import vuetify from './plugins/vuetify';
 
@@ -32,6 +32,8 @@ class API extends EventEmitter {
         Vue.prototype.$action = (action, value) => EventBus.$emit(events.SETTINGS_ACTION, { key: action, value });
         Vue.prototype.$imageService = imageService
 
+        this._attachEvents();
+
         this.app = new Vue({
             vuetify,
             store,
@@ -41,8 +43,6 @@ class API extends EventEmitter {
         if (!preventMount) {
             this.app.$mount('#app');
         }
-
-        this._attachEvents();
     }
 
     highlight(componentId) {

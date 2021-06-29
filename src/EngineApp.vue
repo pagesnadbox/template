@@ -1,5 +1,5 @@
 <template>
-  <base-wrapper id="app" />
+  <base-wrapper id="app" ref="app" />
 </template>
 
 <script>
@@ -46,6 +46,7 @@ export default {
   created() {
     window.addEventListener("wheel", (e) => e.stopPropagation());
   },
+
 };
 </script>
 
