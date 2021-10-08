@@ -1,5 +1,10 @@
 <template>
-  <v-img v-bind="attrs" :height="effectiveHeight" :src="effectiveSource" v-on="listeners">
+  <v-img
+    v-bind="attrs"
+    :height="effectiveHeight"
+    :src="effectiveSource"
+    v-on="listeners"
+  >
     <slot />
   </v-img>
 </template>
@@ -11,5 +16,16 @@ export default {
   name: "BaseVuetifyImage",
 
   mixins: [mixin],
+
+  computed: {
+    styles() {
+      const styles = {};
+
+      styles.border = this.border;
+      styles.borderRadius = this.borderRadius;
+
+      return styles;
+    },
+  },
 };
 </script>

@@ -25,6 +25,16 @@ export default {
       default: ""
     },
 
+    border: {
+      type: String,
+      default: ""
+    },
+
+    borderRadius: {
+      type: String,
+      default: ""
+    },
+
     mobileHeight: {
       type: String,
       default: ""
