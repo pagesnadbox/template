@@ -25,7 +25,7 @@ export default {
 
   computed: {
     classes() {
-      const classes = [];
+      const classes = ["pa-5"];
 
       if (this.fillHeight) {
         classes.push("fill-height");

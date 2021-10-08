@@ -8,7 +8,6 @@ const stateFn = (options) => ({
 })
 
 export default (options) => {
-    console.error(options)
     const state = stateFn(options)
     return {
         namespaced: true,

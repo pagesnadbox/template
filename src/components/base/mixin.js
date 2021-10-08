@@ -30,12 +30,15 @@ export default {
     },
 
     mounted() {
-        this.$el.setAttribute("id", this.$attrs.id);
+        if (this.$el.setAttribute) {
+            this.$el.setAttribute("id", this.$attrs.id);
+        }
     },
 
     watch: {
         id: "scrollIntoView",
-        highlightedComponentId: "onHighlightedIdChange"
+        highlightedComponentId: "onHighlightedIdChange",
+        hasHighlight: "onHasHighlightChange"
 
     },
 
@@ -60,6 +63,7 @@ export default {
 
         mixinClasses() {
             return [
+                "pb-default-component",
                 ...(this.classes || []),
                 ...(this.hasHighlight ? ['hightlight'] : []),
             ]
@@ -75,7 +79,7 @@ export default {
         },
 
         hasHighlight() {
-            return (this.selected || (this.allowEdit && this.mouseover))
+            return this.editable && (this.selected || (this.allowEdit && this.mouseover))
         },
 
         isDark() {
@@ -96,6 +100,30 @@ export default {
     },
 
     methods: {
+
+        createTag() {
+            if (this.tag) return this.tag;
+
+            this.tag = document.createElement("div");
+            this.tag.className = "name-tag";
+            this.tag.textContent = this.$options.name;
+            this.$el.appendChild(this.tag);
+
+            return this.tag;
+        },
+
+        toggleTag(value) {
+            if (value) {
+                this.tag.style.display = "block";
+            } else {
+                this.tag.style.display = "none";
+            }
+        },
+
+        onHasHighlightChange(value) {
+            this.createTag();
+            this.toggleTag(value);
+        },
 
         onHighlightedIdChange(id) {
             if (id === this.$attrs.id && this.allowEdit) {

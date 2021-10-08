@@ -12,6 +12,17 @@ import mixin from "./mixin";
 export default {
   name: "BaseApp",
 
+  props: ["title"],
+
+  watch: {
+    title: {
+      immediate: true,
+      handler() {
+        document.title = this.title;
+      },
+    },
+  },
+
   mixins: [mixin],
 };
 </script>
