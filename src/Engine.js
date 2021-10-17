@@ -24,7 +24,7 @@ class API extends EventEmitter {
         return store
     }
 
-    async init({ baseUrl, config = {}, plugins = [], preventMount = false } = {}) {
+    init({ baseUrl, config = {}, plugins = [], preventMount = false } = {}) {
         store = Store({ modules: { config }, plugins })
 
         const imageService = ImagesService.getInstance()
