@@ -45,8 +45,8 @@ class API extends EventEmitter {
         }
     }
 
-    highlight(componentId) {
-        store.dispatch("settings/setHighlightedComponentId", componentId)
+    highlight({ id, force = false } = {}) {
+        store.dispatch("settings/setHighlightedComponentId", { id, force })
     }
 
     setConfig(config = {}) {

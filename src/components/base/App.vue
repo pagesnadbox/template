@@ -1,6 +1,6 @@
 <template>
   <v-app v-bind="attrs" v-on="listeners">
-    <v-main>
+    <v-main class="pa-0">
       <slot />
     </v-main>
   </v-app>

@@ -7,8 +7,8 @@ const stateFn = () => ({
     open: false,
     showHighlighter: false,
     highlightedComponentId: null,
+    highlightForce: false,
     images: {},
-
     showGallery: false,
     ctrlDown: false,
     canRedo: false,
@@ -28,6 +28,7 @@ export default (options) => {
         mutations: {
             SET_SHOW_HIGHLIGHTER: set('showHighlighter'),
             SET_HIGHLIGHTED_COMPONENT_ID: set('highlightedComponentId'),
+            SET_HIGHLIGHT_FORCE: set('highlightForce'),
             SET_CAN_REDO: set('canRedo'),
             SET_CAN_UNDO: set('canUndo'),
             SET_ALLOW_EDIT: set('allowEdit'),
@@ -75,7 +76,8 @@ export default (options) => {
                 commit('SET_SHOW_HIGHLIGHTER', payload)
             },
             setHighlightedComponentId({ commit }, payload) {
-                commit('SET_HIGHLIGHTED_COMPONENT_ID', payload)
+                commit('SET_HIGHLIGHTED_COMPONENT_ID', payload.id)
+                commit('SET_HIGHLIGHT_FORCE', payload.force)
             },
             setCanRedo({ commit }, payload) {
                 commit('SET_CAN_REDO', payload)

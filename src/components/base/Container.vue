@@ -17,11 +17,15 @@ export default {
       type: Boolean,
       default: false,
     },
+    editable: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
     classes() {
-      const classes = [];
+      const classes = ["pa-0"];
 
       if (this.fillHeight) {
         classes.push("fill-height");

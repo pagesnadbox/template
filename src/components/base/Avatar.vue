@@ -7,7 +7,7 @@
         color || ($vuetify.theme.isDark ? 'grey darken-3' : 'grey lighten-4')
       "
       :size="outlineSize"
-      :style="styles"
+      :style="localStyles"
       class="base-avatar__outline"
       style="opacity: 0.4"
       v-on="listeners"
@@ -68,7 +68,7 @@ export default {
     outlineSize() {
       return Number(this.size) + this.size / this.multiply;
     },
-    styles() {
+    localStyles() {
       const margin = this.size / (this.multiply * 2);
 
       return {

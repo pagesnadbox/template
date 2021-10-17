@@ -1,14 +1,16 @@
 <template>
-  <a
-    class="d-inline-block mb-8"
-    :href="href"
-    style="text-decoration: none"
-    :target="targetFormatted"
-    v-bind="attrs"
-    v-on="listeners"
-  >
-    {{ href }}
-  </a>
+  <div>
+    <a
+      class="d-inline-block mb-8"
+      :href="href"
+      style="text-decoration: none"
+      :target="targetFormatted"
+      v-bind="attrs"
+      v-on="listeners"
+    >
+      {{ href }}
+    </a>
+  </div>
 </template>
 
 <script>

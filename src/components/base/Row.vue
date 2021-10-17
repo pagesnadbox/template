@@ -13,6 +13,10 @@ export default {
   mixins: [mixin],
 
   props: {
+    editable: {
+      type: Boolean,
+      default: false,
+    },
     fillHeight: {
       type: Boolean,
       default: false,
@@ -25,7 +29,7 @@ export default {
 
   computed: {
     classes() {
-      const classes = ["pa-5"];
+      const classes = ["pa-0"];
 
       if (this.fillHeight) {
         classes.push("fill-height");

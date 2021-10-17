@@ -8,10 +8,10 @@
     v-bind="{ ...attrs, ...sizeObject }"
     :text="textOnly"
     :target="targetFormatted"
-    :block="block || blockOnMobile"
+    :block="computedBlock"
     v-on="listeners"
   >
-    <span v-if="text">{{text}}</span>
+    <span v-if="text">{{ text }}</span>
     <slot v-else />
 
     <v-icon v-if="iconSrc" right>
@@ -99,6 +99,12 @@ export default {
         large: this.size === "large",
         "x-large": this.size === "x-large",
       };
+    },
+
+    computedBlock() {
+      return (
+        this.block || (this.$vuetify.breakpoint.mobile && this.blockOnMobile)
+      );
     },
 
     targetFormatted() {

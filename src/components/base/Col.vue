@@ -11,6 +11,19 @@ export default {
   name: "BaseCol",
 
   mixins: [mixin],
+
+  props: {
+    editable: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  computed: {
+    classes() {
+      return ["pa-2"];
+    },
+  },
 };
 </script>
 

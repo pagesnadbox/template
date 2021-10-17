@@ -48,7 +48,7 @@ export default {
   computed: {
     classes() {
       return [
-        this.dark ? "text--lighten-1" : "text--darken-1",
+        this.color ? `${this.colo}--text` : this.dark ? "white--text" : "",
         this.justify,
       ];
     },
@@ -61,8 +61,10 @@ export default {
           return "mr-auto";
         case "right":
           return "ml-auto";
-        default:
+        case "center":
           return "mx-auto";
+        default:
+          return "";
       }
     },
     styles() {

@@ -5,42 +5,11 @@
 <script>
 import { mapState } from "vuex";
 
-import { EventBus, events } from "./utils/eventBus";
-
 export default {
   name: "App",
 
   computed: {
-    ...mapState("engine", ["data", "counter"]),
-  },
-
-  watch: {
-    "data.app.dark": {
-      immediate: true,
-      handler: "onDarkChange",
-    },
-    "data.app.primary": {
-      immediate: true,
-      handler: "onPrimaryColor",
-    },
-  },
-  props: {
-    fillHeight: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  methods: {
-    onDarkChange(value) {
-      this.$vuetify.theme.dark = value;
-    },
-    onPrimaryColor(value) {
-      EventBus.$emit(events.THEME_COLOR_CHANGE, {
-        key: "primary",
-        value,
-      });
-      this.$vuetify.theme.currentTheme.primary = value;
-    },
+    ...mapState("engine", ["data"]),
   },
 
   created() {

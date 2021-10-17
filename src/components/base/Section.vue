@@ -48,6 +48,10 @@ export default {
 
       return styles;
     },
+
+    classes() {
+      return ["overflow-hidden"];
+    },
   },
 };
 </script>

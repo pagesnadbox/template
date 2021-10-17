@@ -43,7 +43,7 @@ export default {
     },
 
     computed: {
-        ...mapState('settings', ['id', 'allowEdit', 'open', 'showHighlighter', "highlightedComponentId"]),
+        ...mapState('settings', ['id', 'allowEdit', 'open', 'showHighlighter', "highlightedComponentId", "highlightForce"]),
 
         listeners() {
             return {
@@ -70,16 +70,36 @@ export default {
         },
 
         mixinStyles() {
+            const spaces = [
+                "Top",
+                "Right",
+                "Bottom",
+                "Left",
+            ].reduce((result, p) => {
+                if (this.$attrs[`margin${p}`]) {
+                    result[`margin${p}`] = `${this.$attrs[`margin${p}`]}px !important`
+                }
+                if (this.$attrs[`padding${p}`]) {
+                    result[`padding${p}`] = `${this.$attrs[`padding${p}`]}px !important`
+                }
+                return result;
+            }, {})
+
+            if (this.$attrs.margin !== null && this.$attrs.margin !== undefined) {
+                spaces.margin = this.$attrs.margin
+            }
+            if (this.$attrs.padding !== null && this.$attrs.padding !== undefined) {
+                spaces.padding = this.$attrs.padding
+            }
             return {
                 ...(this.styles || {}),
                 ...(this.colorStyles || {}),
-                margin: this.$attrs.margin,
-                padding: this.$attrs.padding
+                ...spaces,
             }
         },
 
         hasHighlight() {
-            return this.editable && (this.selected || (this.allowEdit && this.mouseover))
+            return (this.selected && this.allowEdit) || ((this.editable || this.highlightForce) && (this.selected || (this.allowEdit && this.mouseover)))
         },
 
         isDark() {
@@ -113,7 +133,7 @@ export default {
         },
 
         toggleTag(value) {
-            if (value) {
+            if (value && this.tag && this.tag.style) {
                 this.tag.style.display = "block";
             } else {
                 this.tag.style.display = "none";

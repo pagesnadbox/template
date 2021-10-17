@@ -1,5 +1,5 @@
 <template>
-  <v-tabs v-on="listeners" v-bind="attrs">
+  <v-tabs v-on="listeners" v-bind="attrs" background-color="transparent">
     <slot></slot>
   </v-tabs>
 </template>
