@@ -121,23 +121,23 @@ export default {
 
     methods: {
         createTag() {
-            if (this.tag) return this.tag;
+            if (this.pgSandboxComponentTag) return this.pgSandboxComponentTag;
 
-            this.tag = document.createElement("div");
-            this.tag.className = "name-tag";
-            this.tag.textContent = this.$options.name;
-            this.$el.appendChild(this.tag);
+            this.pgSandboxComponentTag = document.createElement("div");
+            this.pgSandboxComponentTag.className = "name-tag";
+            this.pgSandboxComponentTag.textContent = this.$options.name;
+            this.$el.appendChild(this.pgSandboxComponentTag);
 
-            return this.tag;
+            return this.pgSandboxComponentTag;
         },
 
         toggleTag(value) {
-            if (!this.tag || !this.tag.style) return
+            if (!this.pgSandboxComponentTag || !this.pgSandboxComponentTag.style) return;
 
             if (value) {
-                this.tag.style.display = "block";
+                this.pgSandboxComponentTag.style.display = "block";
             } else {
-                this.tag.style.display = "none";
+                this.pgSandboxComponentTag.style.display = "none";
             }
         },
 
