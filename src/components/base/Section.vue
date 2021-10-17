@@ -50,7 +50,13 @@ export default {
     },
 
     classes() {
-      return ["overflow-hidden"];
+      const classes = [];
+
+      if (this.$attrs.elevation) {
+        classes.push("overflow-hidden");
+      }
+
+      return classes;
     },
   },
 };

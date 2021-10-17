@@ -23,7 +23,7 @@ export default {
 
   methods: {
     onClick() {
-      this.$vuetify.goTo(`#${this.goTo}`);
+      document.getElementById(this.goTo).scrollIntoView({ behavior: "smooth" });
     },
   },
 };
