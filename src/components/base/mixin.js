@@ -120,7 +120,6 @@ export default {
     },
 
     methods: {
-
         createTag() {
             if (this.tag) return this.tag;
 
@@ -133,7 +132,9 @@ export default {
         },
 
         toggleTag(value) {
-            if (value && this.tag && this.tag.style) {
+            if (!this.tag || !this.tag.style) return
+
+            if (value) {
                 this.tag.style.display = "block";
             } else {
                 this.tag.style.display = "none";
