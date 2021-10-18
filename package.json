@@ -1,6 +1,6 @@
 {
   "name": "pagesandbox-template",
-  "version": "0.0.33",
+  "version": "0.0.35",
   "private": false,
   "scripts": {
     "serve": "cp -f ./buildfiles/dev/index.html ./public/; vue-cli-service serve",

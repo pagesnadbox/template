@@ -230,7 +230,7 @@ export default {
                 event.stopPropagation()
 
                 this.$action("setComponent", { id, name })
-                this.$action("setComponents")
+                // this.$action("setComponents")
 
                 if (!this.open) {
                     this.$action("setOpen", true)
