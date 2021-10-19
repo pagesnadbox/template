@@ -1,7 +1,15 @@
 <template>
-  <v-tab @click="onClick" v-on="listeners" v-bind="attrs">
+  <v-tab
+    v-if="!$vuetify.breakpoint.mobile"
+    @click="onClick"
+    v-on="listeners"
+    v-bind="attrs"
+  >
     {{ text }}
   </v-tab>
+  <v-list-item v-else v-on="listeners" v-bind="attrs" @click="onClick">
+    {{ text }}
+  </v-list-item>
 </template>
 
 <script>
