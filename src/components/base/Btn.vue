@@ -14,7 +14,7 @@
     <span v-if="text">{{ text }}</span>
     <slot v-else />
 
-    <v-icon v-if="iconSrc" right>
+    <v-icon v-if="iconSrc">
       {{ iconSrc }}
     </v-icon>
   </v-btn>

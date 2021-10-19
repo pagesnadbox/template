@@ -1,5 +1,5 @@
 <template>
-  <div class="base-avatar d-inline-flex" :style="mixinStyles">
+  <div class="base-avatar d-inline-flex" :style="mixinStyles" v-on="listeners">
     <v-avatar
       v-if="outlined"
       v-bind="attrs"
@@ -10,7 +10,6 @@
       :style="localStyles"
       class="base-avatar__outline"
       style="opacity: 0.4"
-      v-on="listeners"
     />
 
     <v-avatar
@@ -18,7 +17,6 @@
       :size="size"
       class="base-avatar__avatar"
       v-bind="attrs"
-      v-on="listeners"
     >
       <base-icon
         v-if="icon"
@@ -28,6 +26,7 @@
         :size="size / 2"
         :icon="icon"
       />
+      <v-img v-else-if="src" :src="src" alt="Avatar Image"></v-img>
     </v-avatar>
   </div>
 </template>
@@ -43,6 +42,10 @@ export default {
   mixins: [mixin],
 
   props: {
+    src: {
+      type: String,
+      default: "",
+    },
     color: String,
     dark: Boolean,
     iconDark: null,
